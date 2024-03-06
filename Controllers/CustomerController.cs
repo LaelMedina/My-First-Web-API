@@ -20,9 +20,9 @@ namespace myFirstWebAPI.Controllers
         };
 
         [HttpGet("list")]
-        public string getCustomersList()
+        public IActionResult getCustomersList()
         {
-            return JsonSerializer.Serialize(CustomerList);
+            return Ok(CustomerList);
         }
 
         [HttpGet("{id}")]

@@ -30,3 +30,4 @@ C:\Users\Usuario\Documents\CodingData\myFirstWebAPI\obj\Debug\net8.0\refint\myFi
 C:\Users\Usuario\Documents\CodingData\myFirstWebAPI\obj\Debug\net8.0\myFirstWebAPI.pdb
 C:\Users\Usuario\Documents\CodingData\myFirstWebAPI\obj\Debug\net8.0\myFirstWebAPI.genruntimeconfig.cache
 C:\Users\Usuario\Documents\CodingData\myFirstWebAPI\obj\Debug\net8.0\ref\myFirstWebAPI.dll
+C:\Users\Usuario\Documents\CodingData\myFirstWebAPI\obj\Debug\net8.0\myFirstWebAPI.sourcelink.json
