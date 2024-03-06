@@ -20,13 +20,13 @@ namespace myFirstWebAPI.Controllers
         };
 
         [HttpGet("list")]
-        public IActionResult getCustomersList()
+        public ActionResult getCustomersList()
         {
             return Ok(CustomerList);
         }
 
         [HttpGet("{id}")]
-        public IActionResult getCustomerById(int Id)
+        public ActionResult getCustomerById(int Id)
         {
             Customer? customer = CustomerValidator.ValidateExistingId(CustomerList, Id);
 
@@ -34,10 +34,21 @@ namespace myFirstWebAPI.Controllers
             {
                 return Ok(customer);
             }
-            else
-            {
-                return NotFound();
+            
+            return NotFound();
+            
+        }
+
+        [HttpGet("search/{nameSearched}")]
+        public ActionResult getCustomerByName(string nameSearched) 
+        {
+            List<Customer>? customer = CustomerValidator.ValidateExistingName(CustomerList, nameSearched);
+            
+            if(customer != null){
+                return Ok(customer);
             }
+
+            return NotFound();
         }
     }
 }

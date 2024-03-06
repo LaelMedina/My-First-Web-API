@@ -8,5 +8,10 @@ namespace myFirstWebAPI.Validators
         {
             return CustomerList.FirstOrDefault(Customer => Customer.Id == Id);
         }
+
+        public static List<Customer>? ValidateExistingName(List<Customer> CustomerList, string nameSearched)
+        {
+            return CustomerList.Where(customer => customer.Name.ToLower().Contains(nameSearched.ToLower())).ToList();
+        }
     }
 }
