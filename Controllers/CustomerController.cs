@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myFirstWebAPI.Models;
+using myFirstWebAPI.Services;
 using myFirstWebAPI.Validators;
 using System.Text.Json;
 
@@ -10,6 +11,13 @@ namespace myFirstWebAPI.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private ICustomerService _customerValidator;
+
+        public CustomerController(ICustomerService customerValidator)
+        {
+            _customerValidator = customerValidator;
+        }
+
         List<Customer> CustomerList = new List<Customer>()
         {
             new() {Id = 0, Name = "Eren Jaeger"},
@@ -19,16 +27,17 @@ namespace myFirstWebAPI.Controllers
             new() {Id = 2, Name = "Armin Arlert"}
         };
 
+
         [HttpGet("list")]
-        public ActionResult getCustomersList()
+        public ActionResult GetCustomersList()
         {
             return Ok(CustomerList);
         }
 
         [HttpGet("{id}")]
-        public ActionResult getCustomerById(int Id)
+        public ActionResult GetCustomerById(int Id)
         {
-            Customer? customer = CustomerValidator.ValidateExistingId(CustomerList, Id);
+            Customer? customer = _customerValidator.GetCustomerById(CustomerList, Id);
 
             if (customer != null)
             {
@@ -36,13 +45,12 @@ namespace myFirstWebAPI.Controllers
             }
             
             return NotFound();
-            
         }
 
         [HttpGet("search/{nameSearched}")]
-        public ActionResult getCustomerByName(string nameSearched) 
+        public ActionResult GetCustomerByName(string nameSearched)
         {
-            List<Customer>? customer = CustomerValidator.ValidateExistingName(CustomerList, nameSearched);
+            List<Customer>? customer = _customerValidator.GetCustomerByName(CustomerList, nameSearched);
             
             if(customer != null){
                 return Ok(customer);

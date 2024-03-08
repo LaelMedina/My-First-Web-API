@@ -1,4 +1,7 @@
 
+using myFirstWebAPI.Services;
+using myFirstWebAPI.Validators;
+
 namespace myFirstWebAPI
 {
     public class Program
@@ -8,6 +11,7 @@ namespace myFirstWebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSingleton<ICustomerService, CustomerValidator>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
